@@ -15,8 +15,8 @@ train_dataset = train_dataset.sample(frac=1,random_state=1).reset_index(drop=Tru
 test_dataset = test_dataset.sample(frac=1,random_state=1).reset_index(drop=True)
 
 # turn to csv file
-train_dataset.to_csv('train.csv', index=False, header=False)
-test_dataset.to_csv('test.csv', index=False, header=False)
+train_dataset.to_csv('train.csv', index=False)
+test_dataset.to_csv('test.csv', index=False)
 
 # print(train_dataset.shape)
 # print(test_dataset.shape)
