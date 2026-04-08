@@ -38,8 +38,17 @@ void datareader::read(const std::string& filename, dataset& dset)
     }
 
     std::string s;
-    while(ifs >> s)
+    
+    // ignore header
+    std::getline(ifs,s);
+    
+    while(std::getline(ifs,s))
     {
+        if(s.empty())
+        {
+            continue;
+        }
+
         std::vector<std::string> datas;
         datas = split(s,",");
 
