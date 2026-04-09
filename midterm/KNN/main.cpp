@@ -1,5 +1,6 @@
 #include <iostream>
-#include<string>
+#include <string>
+#include <cstring>
 #include "data.h"
 #include "datareader.h"
 #include "datatransformer.h"
@@ -19,12 +20,15 @@ int main(int argc, char* argv[])
     reader.read("../data/test.csv",test_data);
     // std::cout << "Loading the testing data successfully" << std::endl;
 
-    transformer.fit(train_data);
-    transformer.standardize(train_data);
-    transformer.standardize(test_data);
+    // check for standardization
+    if(std::strcmp(argv[1], "true") == 0){
+        transformer.fit(train_data);
+        transformer.standardize(train_data);
+        transformer.standardize(test_data);
+    }
 
     std::size_t k;
-    k = std::stoi(argv[1]);
+    k = std::stoi(argv[2]);
 
     KNN knn;
     std::vector<int> result;
