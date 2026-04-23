@@ -17,7 +17,7 @@ y_train = train_data[Label].values
 X_test = test_data[Characteristcs].values
 y_test = test_data[Label].values
 
-scaler = StandardScaler();
+scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
