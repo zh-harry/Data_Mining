@@ -17,9 +17,13 @@ y_train = train_data[Label].values
 X_test = test_data[Characteristcs].values
 y_test = test_data[Label].values
 
-scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.transform(X_test)
+decision = input("Do you want to standardize the data?(y/n):")
+print("decision: " + ("with standardized" if decision == "y" else "without standardized"))
+
+if decision == 'y':
+    scaler = StandardScaler()
+    X_train = scaler.fit_transform(X_train)
+    X_test = scaler.transform(X_test)
 
 parameters = {'C': Continuous(0.1,10),
               'gamma': Continuous(0.1,10)}
