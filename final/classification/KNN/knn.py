@@ -1,3 +1,4 @@
+import sys
 import pandas as pd
 import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
@@ -26,7 +27,7 @@ df.to_csv('knn_proba_predict.csv', index=False)
 max_prob = df.max(axis=1)
 best_class = df.idxmax(axis=1)
 
-threshold_prob = 1.0
+threshold_prob = float(sys.argv[1])
 
 final_prediction = np.where(max_prob >= threshold_prob, best_class, 'Unknown')
 
