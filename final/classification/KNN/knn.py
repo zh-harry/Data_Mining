@@ -16,7 +16,9 @@ y_train = train_data[Label].values
 X_test = test_data[features].values
 y_test = test_data[Label].values
 
-knn_model = KNeighborsClassifier(n_neighbors=21)
+k = int(sys.argv[1])
+
+knn_model = KNeighborsClassifier(n_neighbors=k)
 knn_model.fit(X_train, y_train)
 
 prob = knn_model.predict_proba(X_test)
@@ -27,7 +29,7 @@ df.to_csv('knn_proba_predict.csv', index=False)
 max_prob = df.max(axis=1)
 best_class = df.idxmax(axis=1)
 
-threshold_prob = float(sys.argv[1])
+threshold_prob = float(sys.argv[2])
 
 final_prediction = np.where(max_prob >= threshold_prob, best_class, 'Unknown')
 
