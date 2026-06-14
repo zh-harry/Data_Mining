@@ -25,7 +25,7 @@ int main(int argc, char* argv[]){
 
     // cluster for two extra types
     std::size_t k = static_cast<std::size_t>(std::stoull(argv[3]));
-    KMeans kmeans(2);
+    KMeans kmeans(k);
     std::vector<std::size_t> labels = kmeans.fit(unknowns);
 
     // output result (labels)
