@@ -45,7 +45,7 @@ int main(int argc, char* argv[]){
     dataset test_data;
     reader.read(argv[2], test_data);
     std::vector<std::unordered_map<std::string, int>> lable_cnt;
-    lable_cnt.resize(2);
+    lable_cnt.resize(k);
     for(std::size_t i = 0;i < unknowns_original_indx.size();++i)
     {
         std::size_t idx = unknowns_original_indx[i];
