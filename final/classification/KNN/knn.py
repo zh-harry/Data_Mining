@@ -4,8 +4,11 @@ import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 
-train_data = pd.read_csv('../../data/dry_bean_train_std.csv')
-test_data = pd.read_csv('../../data/dry_bean_test_std.csv')
+train_source = sys.argv[1]
+test_source = sys.argv[2]
+
+train_data = pd.read_csv(train_source)
+test_data = pd.read_csv(test_source)
 
 Label = 'Class'
 features = train_data.columns.drop(Label)
@@ -16,7 +19,7 @@ y_train = train_data[Label].values
 X_test = test_data[features].values
 y_test = test_data[Label].values
 
-k = int(sys.argv[1])
+k = int(sys.argv[3])
 
 knn_model = KNeighborsClassifier(n_neighbors=k)
 knn_model.fit(X_train, y_train)
@@ -29,7 +32,7 @@ df.to_csv('knn_proba_predict.csv', index=False)
 max_prob = df.max(axis=1)
 best_class = df.idxmax(axis=1)
 
-threshold_prob = float(sys.argv[2])
+threshold_prob = float(sys.argv[4])
 
 final_prediction = np.where(max_prob >= threshold_prob, best_class, 'Unknown')
 
